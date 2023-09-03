@@ -47,7 +47,8 @@ public class LoginPage extends CommonActions {
 	
 	
 	public void login(String uid, String pass)
-	{	
+	{
+		System.out.println("Login started");
 		SetInput(userid, uid,uid+" has been entered into username field");
 		SetInput(pwd, pass,pass+" has been entered into password field");
 		clickElement(login,"Login button clicked");
