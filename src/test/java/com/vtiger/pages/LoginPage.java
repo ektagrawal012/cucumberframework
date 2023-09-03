@@ -51,6 +51,7 @@ public class LoginPage extends CommonActions {
 		SetInput(userid, uid,uid+" has been entered into username field");
 		SetInput(pwd, pass,pass+" has been entered into password field");
 		clickElement(login,"Login button clicked");
+		System.out.println("Login successfully");
 	}
 	
 	public void verifyErrorMsg()
