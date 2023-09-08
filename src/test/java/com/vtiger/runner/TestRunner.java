@@ -14,7 +14,7 @@ import io.cucumber.junit.CucumberOptions;
 				"junit:target/cucumber-reports/Cucumber.xml",
 				"html:target/cucumber-reports.html"}
 		//,dryRun = true
-		,tags = "@invalid"
+		,tags = "@Leads"
 		
 		
 		

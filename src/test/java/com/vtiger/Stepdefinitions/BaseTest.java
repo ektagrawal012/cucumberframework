@@ -27,16 +27,10 @@ import com.codoid.products.fillo.Recordset;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BaseTest {
+public class BaseTest extends pageObjectManager{
 	
 	
-public static WebDriver driver;
-public static Properties prop;
-public static Map<String,Map<String,String>> alldata;
-public static ExtentHtmlReporter htmlReporter;
-public static ExtentReports extent;
-public static ExtentTest logger;
-public static String vTCName;
+
 	
 	
 	public void initiation()
@@ -73,6 +67,7 @@ public static String vTCName;
 		driver.manage().window().maximize();
 		int time= Integer.parseInt(prop.getProperty("ImplicitWait"));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(time));
+		getPageObject();
 	}
 	
 	public Properties readproperties()

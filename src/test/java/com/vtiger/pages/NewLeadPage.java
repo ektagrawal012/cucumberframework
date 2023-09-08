@@ -31,6 +31,73 @@ public class NewLeadPage extends CommonActions {
 	@FindBy(name="button")
 	WebElement save;
 	
+	@FindBy(linkText = "New Lead")
+	WebElement newLead;
+	
+	@FindBy(xpath = "//td[text()='Last Name:']/following::td[1]")
+	WebElement lastnameValue;
+	
+	@FindBy(xpath = "//td[text()='Company:']/following::td[1]")
+	WebElement companyValue;
+	
+	@FindBy(linkText = "Leads")
+	WebElement leads;
+	
+	@FindBy(xpath = "//input[@value='Search'][@name='button']")
+	WebElement search;
+	
+	@FindBy(name="Edit")
+	WebElement edit;
+	
+	@FindBy(name="leadsource")
+	WebElement leadsource;
+	
+	@FindBy(name="noofemployees")
+	WebElement noofemployees;
+	
+	@FindBy(name="mobile")
+	WebElement mobile;
+	
+	@FindBy(name="leadstatus")
+	WebElement leadstatus;
+	
+	@FindBy(xpath="//input[@name='city']")
+	WebElement city;
+	
+	@FindBy(name="email")
+	WebElement email;
+	
+	@FindBy(name="Delete")
+	WebElement delete;
+	
+	@FindBy(xpath = "//input[@value='T']")
+	WebElement assignTo;
+	
+	@FindBy(xpath = "//td[text()='No Of Employees:']/following::td[1]")
+	WebElement noofemployeesvalue;
+	
+	@FindBy(xpath = "//td[text()='Email:']/following::td[1]")
+	WebElement emailvalue;
+	
+	@FindBy(xpath = "//td[text()='City:']/following::td[1]")
+	WebElement cityvalue;
+	
+	
+	
+	@FindBy(xpath = "//input[@name='lastname'][@size='10']")
+	WebElement LastName;
+	
+
+	
+	public void clickNewLead()
+	{
+		clickElement(newLead, "New Lead link has been clicked");
+	}
+	
+	public void clickSaveButton()
+	{
+		clickElement(save, "Save button clicked");
+	}
 	
 	public void createLead(String firstname, String lastname, String company)
 	{
@@ -39,7 +106,69 @@ public class NewLeadPage extends CommonActions {
 		SetInput(comp, company, company+" has been entered into company fields");
 		clickElement(save, "Save button clicked");
 	}
+	
+	public void createLead(String lastname, String company)
+	{
+		SetInput(lname, lastname, lastname + " has been entered in last name field");
+		SetInput(comp, company, company+" has been entered into company fields");
+		clickSaveButton();
+	}
+	
+	public void verifyCreatedLead(String lastname, String Company)
+	{
+		verifyText(lastname, lastnameValue, lastname +" is validated for Last name field");
+		verifyText(Company, companyValue, Company +" is validated for Last name field");
+	}
+	
+	public void selectLeadFromLeads(String lastname)
+	{
+		clickElement(leads, "Leads link is clicked.");
+		SetInput(LastName, lastname, lastname +" entered in Last name field");
+		clickElement(search, "Search button clicked");
+		selectMostRecentFormEntry("//tr[@height='20']//a[contains(text(),'Mishra')]", "Last lead entry is selected");
+	}
+	
+	public void clickEdit()
+	{
+		clickElement(edit, "Edit button clicked");
+	}
+	
+	public void clickDelete()
+	{
+		clickElement(delete, "Delete button clicked");
+		acceptAlertMessage();
+	}
 		
+	public void createLead(String firstname, String leadSource, String noOfEmployees, String Mobile, String leadStatus, String	City, String EmailWrong, String	EmailRight, String expErrorMsg)
+	{
+		SetInput(fname, firstname, firstname+" has been entered into first name field");
+		selectFromDropdown(leadsource, leadSource, leadSource + " selected in Lead Source dropdown");
+		SetInput(noofemployees, noOfEmployees, noOfEmployees+" has been entered into No of Employees field");
+		SetInput(mobile, Mobile, Mobile+" has been entered into Mobile field");
+		selectFromDropdown(leadstatus, Integer.parseInt(leadStatus), leadStatus + " has been entered into Lead Status field");
+		SetInput(city, City, City+" has been entered into City field");
+		SetInput(email, EmailWrong, EmailWrong+" has been entered into Email field");
+		clickElement(save, "Save button clicked");
+		verifyErrorMessage(expErrorMsg);
+		acceptAlertMessage();
+		SetInput(email, EmailRight, EmailRight+" has been entered into Email field");
+		clickElement(assignTo, "Team radio button is selected");
+		clickSaveButton();
+	}
+	
+	public void verifyCreatedLead(String noOfEmployees, String Email, String City)
+	{
+		verifyText(noOfEmployees, noofemployeesvalue, noOfEmployees +" is validated for No of Employees field");
+		verifyText(Email, emailvalue , Email +" is validated for Email field");
+		verifyText(City, cityvalue , City +" is validated for City field");
+	}
+	
+	public void checkDeletedLead(String lastname)
+	{
+		SetInput(lname, lastname, lastname + " is entered in last name field");
+		clickElement(search, "Search button clicked");
+		elementPresentAfterDelete("//tr[@height='20']//a[contains(text(),'Mishra')]");
+	}
 	
 	
 
