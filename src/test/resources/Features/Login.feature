@@ -1,4 +1,4 @@
-@regression
+@sanity
 Feature: Login fuctionality
 
 Background:
