@@ -1,4 +1,4 @@
-@sanity
+@sanity12
 Feature: Login fuctionality
 
 Background:
