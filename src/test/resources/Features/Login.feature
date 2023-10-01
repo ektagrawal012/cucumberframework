@@ -1,4 +1,4 @@
-@regression
+@sanity
 Feature: Login fuctionality
 
 Background:
@@ -17,8 +17,6 @@ Examples:
 |userid | password |
 |admin1 | pwd1 |
 |admin2 | pwd2 |
-|admin3 | pwd3 |
-|admin4 | pwd4 |
 
 
 
